@@ -16,11 +16,6 @@
 </head>
 
 <body>
-<{if $xoops_isuser}>
-<div class="btn btn-success btn-block"> 
- Hi <{$xoops_uname}> | <a href="<{$xoops_url}>/mobile/user.php?op=logout">Logout</a>
-</div>
-<{else}>
 <div class="login-form">
     <form action="<{$xoops_url}>/mobile/user.php" method="post">
         <div class="form-group">
@@ -45,7 +40,7 @@
     </form>
     <!--<p class="text-center"><a href="#">Create an Account</a></p>-->
 </div>
-<{/if}>
+
 </body>
 </html>
 

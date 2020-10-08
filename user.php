@@ -45,7 +45,7 @@ if (isset($_POST['op'])) {
 }
 
 if ($op === 'login') {
-    include_once $GLOBALS['xoops']->path('checklogin.php');
+    include_once $GLOBALS['xoops']->path('/mobile/checklogin.php');
     exit();
 }
 
@@ -62,7 +62,6 @@ if ($op === 'logout') {
         $online_handler = xoops_getHandler('online');
         $online_handler->destroy($xoopsUser->getVar('uid'));
     }
-    //$xoopsPreload->triggerEvent('core.behavior.user.logout');
     $message = _US_LOGGEDOUT . '<br>' . _US_THANKYOUFORVISIT;
     redirect_header('index.php', 1, $message);
 }
