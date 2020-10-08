@@ -33,10 +33,10 @@
 			<input type="hidden" name="op" value="login" />
             <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </div>
-        <!--<div class="clearfix">
-            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-            <a href="#" class="float-right">Forgot Password?</a>
-        </div>-->   
+            <div class="clearfix">
+            <label class="float-left form-check-label"><input type="checkbox" name="rememberme"> Remember me</label>
+            <!--<a href="#" class="float-right">Forgot Password?</a>-->
+        </div> 
     </form>
     <!--<p class="text-center"><a href="#">Create an Account</a></p>-->
 </div>
