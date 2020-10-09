@@ -63,6 +63,6 @@ if ($op === 'logout') {
         $online_handler->destroy($xoopsUser->getVar('uid'));
     }
     $message = _US_LOGGEDOUT . '<br>' . _US_THANKYOUFORVISIT;
-    redirect_header('index.php', 1, $message);
+	 redirect_header(XOOPS_URL . '/mobile/index.php', 1, $message);
 }
 
