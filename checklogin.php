@@ -46,14 +46,15 @@ if (false !== $user) {
     }
     if ($xoopsConfig['closesite'] == 1) {
         $allowed = false;
-        foreach ($user->getGroups() as $group) {
+        //$allowed = true;
+		foreach ($user->getGroups() as $group) {
             if (in_array($group, $xoopsConfig['closesite_okgrp']) || XOOPS_GROUP_ADMIN == $group) {
                 $allowed = true;
                 break;
             }
         }
         if (!$allowed) {
-            redirect_header(XOOPS_URL . '/main.php', 1, _NOPERM);
+            redirect_header(XOOPS_URL . '/mobile/index.php', 1, _NOPERM);
         }
     }
     $user->setVar('last_login', time());
