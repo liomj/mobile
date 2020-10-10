@@ -30,6 +30,7 @@
         </div>
         <div class="form-group">
 			<input type="hidden" name="xoops_redirect" value="/mobile/main.php" />
+			<input type="hidden" name="xoops_login" value="1">
 			<input type="hidden" name="op" value="login" />
             <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </div>
