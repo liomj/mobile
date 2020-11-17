@@ -54,7 +54,7 @@ if (false !== $user) {
             }
         }
         if (!$allowed) {
-            redirect_header(XOOPS_URL . '/mobile/index.php', 1, _NOPERM);
+            redirect_header(XOOPS_URL . '/mobile/index.php');
         }
     }
     $user->setVar('last_login', time());
