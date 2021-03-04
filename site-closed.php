@@ -11,8 +11,8 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       (c) 2000-2016 XOOPS Project (www.xoops.org)
- * @license             GNU GPL 2 (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @copyright       (c) 2000-2021 XOOPS Project (https://xoops.org)
+ * @license             GNU GPL 2 (https://www.gnu.org/licenses/gpl-2.0.html)
  * @package             kernel
  * @since               2.0.17
  * @author              Taiwen Jiang <phppp@users.sourceforge.net>
@@ -30,7 +30,7 @@ if (is_object($xoopsUser)) {
         }
     }
 } elseif (!empty($_POST['xoops_login'])) {
-    include_once $GLOBALS['xoops']->path('/mobile/checklogin.php');
+    include_once $GLOBALS['xoops']->path('mobile/checklogin.php');
     exit();
 }
 
@@ -60,6 +60,11 @@ if (!$allowed) {
                           'lang_username'     => _USERNAME,
                           'lang_password'     => _PASSWORD,
                           'lang_siteclosemsg' => $xoopsConfig['closesite_text']));
+    if (isset($_SESSION['redirect_message'])) {
+        $xoopsTpl->assign('redirect_message', $_SESSION['redirect_message']);
+        unset($_SESSION['redirect_message']);
+    }
+
     /* @var XoopsConfigHandler $config_handler */
     $config_handler = xoops_getHandler('config');
     $criteria       = new CriteriaCompo(new Criteria('conf_modid', 0));
@@ -68,6 +73,11 @@ if (!$allowed) {
     foreach (array_keys($config) as $i) {
         $name  = $config[$i]->getVar('conf_name', 'n');
         $value = $config[$i]->getVar('conf_value', 'n');
+        // limited substitutions for {X_SITEURL} and {X_YEAR}
+        if ($name === 'footer' || $name === 'meta_copyright') {
+            $value = str_replace('{X_SITEURL}', XOOPS_URL . '/', $value);
+            $value = str_replace('{X_YEAR}', date('Y', time()), $value);
+        }
         if (substr($name, 0, 5) === 'meta_') {
             $xoopsTpl->assign("xoops_$name", htmlspecialchars($value, ENT_QUOTES));
         } else {
