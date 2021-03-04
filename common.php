@@ -9,8 +9,8 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       (c) 2000-2016 XOOPS Project (www.xoops.org)
- * @license             GNU GPL 2 (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @copyright       (c) 2000-2021 XOOPS Project (https://xoops.org)
+ * @license             GNU GPL 2 (https://www.gnu.org/licenses/gpl-2.0.html)
  * @package             kernel
  */
 defined('XOOPS_MAINFILE_INCLUDED') || die('Restricted access');
@@ -28,7 +28,7 @@ if (!function_exists('get_magic_quotes_gpc')) {
 if (!function_exists('get_magic_quotes_runtime')) {
     function get_magic_quotes_runtime() { return false; }
 }
-/* end BC polyfill
+/* end BC polyfill */
 
 /**
  * YOU SHOULD NEVER USE THE FOLLOWING TO CONSTANTS, THEY WILL BE REMOVED
@@ -292,9 +292,10 @@ if (!empty($_SESSION['xoopsUserId'])) {
         $xoopsUserIsAdmin = $xoopsUser->isAdmin();
     }
 }
+// user characteristics are established
+$xoopsPreload->triggerEvent('core.include.common.auth.success');
 
 /**
- * *#@+
  * Debug level for XOOPS
  * Check /xoops_data/configs/xoopsconfig.php for details
  *
@@ -323,7 +324,7 @@ xoops_load('XoopsFormRenderer');
  * Closed Site
  */
 if ($xoopsConfig['closesite'] == 1) {
-    include_once $xoops->path('/mobile/site-closed.php');
+    include_once $xoops->path('mobile/site-closed.php');
 }
 
 /**
